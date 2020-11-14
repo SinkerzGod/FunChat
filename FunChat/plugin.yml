@@ -1,5 +1,14 @@
 name: FunChat
-version: 1.0.0
+version: 1.0.1
 api: 3.0.0
 main: Sinkerz\Loader
 author: Sinkerz
+permissions:
+  funchat.commands.fakeop:
+    default: op
+  funchat.commands.mock:
+    default: true
+  funchat.commands.shrug:
+    default: true
+  funchat.commands.tableflip:
+    default: true
