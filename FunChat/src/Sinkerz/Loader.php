@@ -1,26 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Sinkerz;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\plugin\PluginDescription;
-use pocketmine\plugin\PluginLoader;
-use pocketmine\Server;
 
 class Loader extends PluginBase{
-
-    public function onEnable(): void{
-        $commands = [
-            new MockCommand(), new FakeOpCommand(), new ShrugCommand(), new TableFlipCommand()
-        ];
-        foreach($commands as $command) $this->getServer()->getCommandMap()->registerAll("mock", $commands);
-    }
-
-    public function onDisable(): void{
-
-    }
-
-    public function onLoad(): void{
-
-    }
+	
+	/** @var self $instance */
+	protected static $instance;
+	
+	public function onEnable() : void{
+		self::$instance = $this;
+		$this->getServer()->getCommandMap()->registerAll("mock", [
+			new MockCommand(),
+			new FakeOpCommand(),
+			new ShrugCommand(),
+			new TableFlipCommand()
+		]);
+	}
+	
+	public static function getInstance() : self{
+		return self::$instance;
+	}
 }
